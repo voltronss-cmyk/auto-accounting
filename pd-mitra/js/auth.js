@@ -12,5 +12,5 @@ $('#f').onsubmit=async e=>{ e.preventDefault(); const u=$('#u').value.trim(), p=
                            : await sb.auth.signUp({email:mailOf(u),password:p,options:{data:{username:u}}});
   if(r.error) return m.textContent = r.error.message.includes('Invalid login')?'Username atau password salah.':r.error.message;
   if(!r.data.session) return m.textContent='Akun dibuat. Matikan "Confirm email" di Supabase lalu masuk.';
-  location.href='app.html';
+  location.href='pd-mitra/app.html';
 };
