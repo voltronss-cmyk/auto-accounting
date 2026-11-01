@@ -14,7 +14,7 @@ async function route(){try{const m=(location.hash.slice(1)||'/').split('/');
 
 async function menu(){const L=await DB.list();
   V.innerHTML=`<h2>Riwayat proyek akuntansi</h2><div class=grid>${L.map(p=>`<div class="card proj" data-id="${p.id}"><b>${esc(p.name)}</b><br><span class=muted>Diubah ${new Date(p.updated_at).toLocaleDateString('id-ID')}</span><br><br><button class="btn alt red noprint" data-del="${p.id}" style="color:#fff">Hapus</button></div>`).join('')}
-  <div class="card proj add" id="new">＋ Proyek baru</div></div>${L.length?'':'<p class=muted>Belum ada proyek. Buat proyek bulanan pertama Anda.</p>'}`;
+  <div class="card proj add" id="new">＋ Proyek baru</div></div>${L.length?'':'<p class=muted>Belum ada proyek. Buat proyek bulanan pertama Anda.</p>'}`;}
   V.querySelectorAll('[data-id]').forEach(e=>e.onclick=()=>location.hash=`#/p/${e.dataset.id}/input`);
   V.querySelectorAll('[data-del]').forEach(b=>b.onclick=async ev=>{ev.stopPropagation();if(confirm('Hapus proyek ini?')){await DB.remove(b.dataset.del);menu()}});
   $('#new').onclick=newProject;}
