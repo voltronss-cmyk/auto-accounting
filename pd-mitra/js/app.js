@@ -55,7 +55,7 @@ function bindInput(){const D=proj.data,t=editing?D.txs.find(x=>x.id===editing):n
     const tx={id:t?t.id:crypto.randomUUID(),type:$('#fType').value,no,date,kind:$('#fKind').value,f};
     if(t)D.txs[D.txs.indexOf(t)]=tx;else D.txs.push(tx);editing=null;await persist().catch(fail);
     if(t)location.hash=`#/p/${proj.id}/daftar`;else{$('#fMsg').textContent=`✔ ${no} ditambahkan (${D.txs.length} dokumen).`;$('#fNo').value='';}};
-  if($('#fCancel'))$('#fCancel').onclick=()=>{editing=null;location.hash=`#/p/${proj.id}/daftar`};
+  if($('#fCancel'))$('#fCancel').onclick=()=>{editing=null;location.hash=`#/p/${proj.id}/daftar`};}
   
 
 function listView(D){const rows=[...D.txs].sort((a,b)=>a.date.localeCompare(b.date));
