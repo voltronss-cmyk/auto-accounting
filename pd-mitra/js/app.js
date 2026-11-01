@@ -44,7 +44,7 @@ function inputView(){const t=editing?proj.data.txs.find(x=>x.id===editing):null;
   <label>Bentuk transaksi<select id=fKind></select></label></div><div id=fFields class=grid></div>
   <label>Keterangan (opsional, mengganti keterangan otomatis)<input id=fKet></label>
   <button class=btn id=fAdd>${t?'Simpan perubahan':'Tambah ke jurnal'}</button> ${t?'<button class="btn alt" id=fCancel>Batal</button>':''}<p id=fMsg class=muted></p>`;}
-function bindInput(){const D=proj.data,t=editing?D.txs.find(x=>x.id===editing):null;
+  function bindInput(){const D=proj.data,t=editing?D.txs.find(x=>x.id===editing):null;
   const kinds=()=>{$('#fKind').innerHTML=Object.entries(KINDS[$('#fType').value]).map(([k,v])=>`<option value=${k}>${v[0]}`).join('');fields()};
   const fields=()=>{$('#fFields').innerHTML=KINDS[$('#fType').value][$('#fKind').value][1].map(x=>fieldHTML(x,D)).join('')};
   $('#fType').onchange=kinds;$('#fKind').onchange=fields;kinds();
