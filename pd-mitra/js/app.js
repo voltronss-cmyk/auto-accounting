@@ -17,7 +17,7 @@ async function menu(){const L=await DB.list();
   <div class="card proj add" id="new">＋ Proyek baru</div></div>${L.length?'':'<p class=muted>Belum ada proyek. Buat proyek bulanan pertama Anda.</p>'}`;}
   V.querySelectorAll('[data-id]').forEach(e=>e.onclick=()=>location.hash=`#/p/${e.dataset.id}/input`);
   V.querySelectorAll('[data-del]').forEach(b=>b.onclick=async ev=>{ev.stopPropagation();if(confirm('Hapus proyek ini?')){await DB.remove(b.dataset.del);menu()}});
-  $('#new').onclick=newProject;}
+  $('#new').onclick=newProject;
 
 function newProject(){V.innerHTML=`<div class=card style="max-width:420px"><h3>Proyek baru</h3><label>Bulan<select id=nb>${BLN.slice(1).map((b,i)=>`<option value=${i+1}>${b}`)}</select></label><label>Tahun<input id=ny type=number value=${new Date().getFullYear()}></label><label>Nama usaha<input id=nc></label><button class=btn id=ok>Buat</button> <button class="btn alt" onclick="location.hash='#/'">Batal</button></div>`;
   $('#nb').value=new Date().getMonth()+1;
