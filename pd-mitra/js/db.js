@@ -1,4 +1,4 @@
-const sb = supabase.createClient(APP_CONFIG.SUPABASE_URL, APP_CONFIG.SUPABASE_ANON_KEY);
+const sb = supabase.createClient(APP_CONFIG.SUPABASE_URL, APP_CONFIG.SUPABASE_KEY);
 const DB = {
   async list(){ const {data,error}=await sb.from('projects').select('id,name,updated_at').order('updated_at',{ascending:false}); if(error) throw error; return data; },
   async get(id){ const {data,error}=await sb.from('projects').select('*').eq('id',id).single(); if(error) throw error; return data; },
