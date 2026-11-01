@@ -44,7 +44,7 @@ function inputView(){const t=editing?proj.data.txs.find(x=>x.id===editing):null;
   <label>Bentuk transaksi<select id=fKind></select></label></div><div id=fFields class=grid></div>
   <label>Keterangan (opsional, mengganti keterangan otomatis)<input id=fKet></label>
   <button class=btn id=fAdd>${t?'Simpan perubahan':'Tambah ke jurnal'}</button> ${t?'<button class="btn alt" id=fCancel>Batal</button>':''}<p id=fMsg class=muted></p>`;}
-  function bindInput(){const D=proj.data,t=editing?D.txs.find(x=>x.id===editing):null;
+function bindInput(){const D=proj.data,t=editing?D.txs.find(x=>x.id===editing):null;
   const kinds=()=>{$('#fKind').innerHTML=Object.entries(KINDS[$('#fType').value]).map(([k,v])=>`<option value=${k}>${v[0]}`).join('');fields()};
   const fields=()=>{$('#fFields').innerHTML=KINDS[$('#fType').value][$('#fKind').value][1].map(x=>fieldHTML(x,D)).join('')};
   $('#fType').onchange=kinds;$('#fKind').onchange=fields;kinds();
@@ -91,5 +91,4 @@ function bindAwal(){const S=proj.data.settings;
 function help(){V.innerHTML=`<div class=card><h2>Bantuan</h2><ol><li>Buat <b>proyek baru</b> per bulan di menu Proyek.</li><li>Di tab <b>Input</b>: pilih jenis dokumen (BKK/BKM/JPBK/JPJK/JM), isi nomor dokumen, tanggal, lalu bentuk transaksinya.</li><li>Jurnal khusus, buku besar, buku pembantu, kartu persediaan (FIFO), neraca saldo, neraca lajur, laporan terbentuk otomatis di tab preview.</li><li>HPP dihitung otomatis dari FIFO saat penjualan; PPN 10% dihitung otomatis.</li><li>Jika bentuk transaksi tidak tersedia, pilih <b>Lainnya (manual)</b>.</li><li>Tab <b>Saldo Awal</b> untuk mengubah neraca saldo awal dan master customer/supplier.</li></ol></div>`}
 function profile(){V.innerHTML=`<div class=card style="max-width:420px"><h2>Profil</h2><p>Username: <b>${esc(user.user_metadata.username||'-')}</b></p><label>Password baru<input id=np type=password></label><button class=btn id=cp>Ubah password</button> <button class="btn alt" id=lo>Keluar</button><p id=pm class=muted></p></div>`;
   $('#cp').onclick=async()=>{const r=await sb.auth.updateUser({password:$('#np').value});$('#pm').textContent=r.error?r.error.message:'✔ Password diubah'};
-  $('#lo').onclick=async()=>{await sb.auth.signOut();location.href='index.html'}
-}
+  $('#lo').onclick=async()=>{await sb.auth.signOut();location.href='index.html'}}
