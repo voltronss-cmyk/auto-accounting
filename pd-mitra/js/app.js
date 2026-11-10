@@ -10,7 +10,7 @@ const fail=e=>{V.innerHTML=`<div class="card err">Terjadi kesalahan: ${esc(e.mes
 
 async function route(){try{const m=(location.hash.slice(1)||'/').split('/');
   if(m[1]==='p') return await openProject(m[2],m[3]||'input');
-  proj=null; if(m[1]==='help') return help(); if(m[1]==='profile') return profile(); if(m[1]==='about-us') return about_us(); await menu();}catch(e){fail(e)}}
+  proj=null; if(m[1]==='help') return help(); if(m[1]==='profile') return profile(); if(m[1]==='tentang-kami') return about_us(); await menu();}catch(e){fail(e)}}
 
 async function menu(){const L=await DB.list();
   V.innerHTML=`<h2>Riwayat proyek akuntansi</h2><div class=grid>${L.map(p=>`<div class="card proj" data-id="${p.id}"><b>${esc(p.name)}</b><br><span class=muted>Diubah ${new Date(p.updated_at).toLocaleDateString('id-ID')}</span><br><br><button class="btn alt red noprint" data-del="${p.id}" style="color:#fff">Hapus</button></div>`).join('')}
